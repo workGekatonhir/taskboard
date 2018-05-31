@@ -3,7 +3,7 @@ import TaskBoard from '../containers/TaskBoard';
 
 const App = () => {
   return (
-      <TaskBoard/>
+      <TaskBoard />
   )
 };
 

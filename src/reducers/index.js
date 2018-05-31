@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import tasks from './tasks';
-import taskList from './taskList';
+// import taskList from './taskList';
 
 const taskApp = combineReducers({
     tasks,
-    taskList
+    // taskList
 });
 
 export default taskApp;

@@ -1,0 +1,13 @@
+:local(.btn) {
+    border: 1px;
+    border-radius: 0 10px 10px 0 !important;
+}
+
+
+:local(.input:focus){
+    border-color: #343a40!important;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(10,10,10,.15)!important;
+    box-shadow: 0 0 0 0.2rem rgba(10,10,10,.15)!important;
+    width: 100%;
+}
