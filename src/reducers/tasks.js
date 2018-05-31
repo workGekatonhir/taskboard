@@ -2,13 +2,14 @@
 const initialState = [
     {
         id: 1,
-        text: 'Кпить молоко',
+        text: 'Купить молоко',
         completed: false,
         step:3,
         status:'COMPLETED',
         canNext: false,
         canPrev: true,
-        clicked: false
+        clicked: false,
+        needEdit: false
     },
     {
         id: 2,
@@ -17,7 +18,8 @@ const initialState = [
         status:'IN_WORK',
         canNext: true,
         canPrev: true,
-        clicked: false
+        clicked: false,
+        needEdit: false
     },
     {
         id: 3,
@@ -27,7 +29,8 @@ const initialState = [
         status:'CREATED',
         canNext: true,
         canPrev: false,
-        clicked: true
+        clicked: false,
+        needEdit: false
     },
     {
         id: 4,
@@ -38,7 +41,8 @@ const initialState = [
 
         canNext: true,
         canPrev: true,
-        clicked: false
+        clicked: false,
+        needEdit: false
 
     },
     {
@@ -49,7 +53,8 @@ const initialState = [
 
         canNext: true,
         canPrev: false,
-        clicked: false
+        clicked: false,
+        needEdit: false
     },
 ];
 const tasks = (state =initialState, action)=>{
@@ -72,7 +77,13 @@ const tasks = (state =initialState, action)=>{
         case 'PREVIOUS_STATUS':
             return state.map(t=> previousStatus(t,action)) ;
         case 'CLICKED_TASK':
-            return state.map(t=> clickedTask(t,action))
+            return state.map(t=> clickedTask(t,action));
+        case 'REMOVE_TASK':
+            return state.filter(t=> t.id !== action.id);
+        case 'EDIT_TASK':
+            return state.map(t=> editTask(t,action)) ;
+        case 'NEED_EDIT_TASK':
+            return state.map(t=> needEdit(t,action)) ;
         default:
             return state;
     }
@@ -116,6 +127,27 @@ const clickedTask = (state, action) =>{
     return{
         ...state,
         clicked: !state.clicked
+    }
+};
+
+const editTask = (state, action) =>{
+    if(state.id !== action.id) {
+        return state;
+    }
+    return{
+        ...state,
+        text: action.text,
+        needEdit: !state.needEdit
+    }
+};
+
+const needEdit = (state, action) =>{
+    if(state.id !== action.id) {
+        return state;
+    }
+    return{
+        ...state,
+        needEdit: !state.needEdit
     }
 };
 

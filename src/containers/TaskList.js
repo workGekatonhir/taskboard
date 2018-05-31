@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeStatus, clickedTask } from '../actions/index';
+import { removeTask, changeStatus, clickedTask,editTask,needEdit } from '../actions/index';
 import Task from '../components/Task/';
 
-const getTaskList =({tasks, filter, onNext, onPrev,onClassName, onHeader, onMainClick})=>{
+const getTaskList =({tasks, filter, onNext, onPrev,onClassName, onHeader, onMainClick, onRemove,onEdit,onNeedEdit})=>{
     return (
         <div className={"card col-lg-3 "+onClassName} style={{width: '18rem', marginLeft: "1rem",  marginTop: "1rem" }}>
             <div className="card-header text-uppercase text-center">
@@ -19,6 +19,9 @@ const getTaskList =({tasks, filter, onNext, onPrev,onClassName, onHeader, onMain
                          onNext={onNext}
                          onPrev={onPrev}
                          onMainClick = {onMainClick}
+                         onRemove = {onRemove}
+                         onEdit = {onEdit}
+                         onNeedEdit = {onNeedEdit}
                          onClassName={'list-group-item '+onClassName}
                      />
 
@@ -60,6 +63,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
     onMainClick: (id) => {
         dispatch(clickedTask(ownProps.tasks,'CLICKED_TASK', id))
+    },
+    onRemove: (id) => {
+        dispatch(removeTask(ownProps.tasks,'REMOVE_TASK', id))
+    },
+    onEdit: (id, text) => {
+        dispatch(editTask(ownProps.tasks,'EDIT_TASK', id,text))
+    },
+    onNeedEdit: (id) => {
+        dispatch(needEdit(ownProps.tasks,'NEED_EDIT_TASK', id))
     }
 
 });

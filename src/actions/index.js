@@ -23,3 +23,18 @@ export const clickedTask = (tasks,type,id) =>({
     type: type,
     id: id
 });
+
+export const removeTask = (tasks,type,id) =>({
+    type: type,
+    id: id
+});
+export const editTask = (tasks,type,id, text) =>({
+    text: text,
+    type: type,
+    id: id
+});
+export const needEdit = (tasks,type,id) =>({
+
+    type: type,
+    id: id
+});
